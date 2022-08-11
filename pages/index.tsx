@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center gap-5">
+    <div className="w-screen h-screen flex justify-center items-center gap-5 bg-gray-200">
       <Key
         keyValue={leftKey}
         updateKeyValue={setLeftKey}
