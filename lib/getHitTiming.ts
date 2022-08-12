@@ -1,18 +1,28 @@
 import { HitTiming } from "./precision";
 
-/**
- *
- * @param {number} timeDifference the time difference between the theoric click and the user click in MS
- * @param {number} OD the Overall Difficulty osu related, between 0 and 10
- */
-export const getHitTiming = (
-  timeDifference: number,
-  OD: number
-): typeof HitTiming[number] => {
+type Params = {
+  startTime: number;
+  timeBetweenPress: number;
+  currentTime: number;
+  OD: number;
+  pressIndex: number;
+};
+
+export const getHitTiming = ({
+  startTime,
+  timeBetweenPress,
+  currentTime,
+  OD,
+  pressIndex,
+}: Params): typeof HitTiming[number] => {
   // X, Y and Z are in ms
   const X = 78 - 6 * OD;
   const Y = 138 - 8 * OD;
   const Z = 198 - 10 * OD;
+
+  const pressIndexTiming = startTime + pressIndex * timeBetweenPress;
+
+  const timeDifference = Math.abs(currentTime - pressIndexTiming);
 
   if (timeDifference <= X) return "300";
 

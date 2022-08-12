@@ -9,5 +9,5 @@ export const getAccuracy = (
       (300 * (nb300 + nb100 + nb50 + nbMiss))) *
     100;
 
-  return accuracy.toFixed(2);
+  return accuracy.toFixed(2).concat("%");
 };
